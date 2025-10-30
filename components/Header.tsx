@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { navLinks } from '../constants';
 import type { NavLink } from '../types';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const UserIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -34,11 +35,12 @@ const ChevronDownIcon = () => (
 
 const Header: React.FC = () => {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { language, setLanguage, t } = useLanguage();
 
   return (
     <header className="relative z-50">
       <div className="bg-[#E4002B] text-white text-center p-2 text-sm font-light tracking-wider">
-        LIVRAISON EN FRANCE MÉTROPOLITAINE OFFERTE DÈS 70€ D'ACHAT • CLICK & COLLECT DISPONIBLE
+        {t.header.announcement}
       </div>
       <div className="bg-white/80 backdrop-blur-md shadow-md sticky top-0">
         <div className="container mx-auto px-4">
@@ -85,6 +87,12 @@ const Header: React.FC = () => {
                 </nav>
 
                 <div className="flex items-center space-x-4 text-[#3A3A3A]">
+                    <button
+                        onClick={() => setLanguage(language === 'fr' ? 'es' : 'fr')}
+                        className="px-3 py-1 rounded-md border-2 border-[#3A3A3A] hover:bg-[#E4002B] hover:text-white hover:border-[#E4002B] transition-colors duration-300 font-semibold text-sm"
+                    >
+                        {language === 'fr' ? 'ES' : 'FR'}
+                    </button>
                     <a href="#" className="hover:text-[#E4002B] transition-colors duration-300"><UserIcon /></a>
                     <a href="#" className="hover:text-[#E4002B] transition-colors duration-300 flex items-center">
                         <CartIcon />
