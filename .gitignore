@@ -29,3 +29,6 @@ yarn-error.log*
 
 # Vite
 .vite/
+
+# Claude Code
+.claude/
