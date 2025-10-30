@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { heroSlides, newsArticles, featuredProducts } from '../constants';
 import type { Product } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -24,11 +23,11 @@ const HeroSlider: React.FC = () => {
     const { t } = useLanguage();
 
     const nextSlide = React.useCallback(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % heroSlides.length);
-    }, []);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % t.heroSlides.length);
+    }, [t.heroSlides.length]);
 
     const prevSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + heroSlides.length) % heroSlides.length);
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + t.heroSlides.length) % t.heroSlides.length);
     };
 
     useEffect(() => {
@@ -38,7 +37,7 @@ const HeroSlider: React.FC = () => {
 
     return (
         <div className="relative w-full h-[600px] overflow-hidden">
-            {heroSlides.map((slide, index) => (
+            {t.heroSlides.map((slide, index) => (
                 <div
                     key={index}
                     className={`absolute inset-0 transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
@@ -128,7 +127,7 @@ const FeaturedProducts: React.FC = () => {
             <div className="container mx-auto px-4">
                 <h2 className="font-serif text-4xl font-bold text-center mb-10 tracking-tighter">{t.home.featuredTitle}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {featuredProducts.map((product: Product) => (
+                    {t.featuredProducts.map((product: Product) => (
                         <div key={product.id} className="group text-center">
                             <div className="relative overflow-hidden rounded-lg shadow-lg mb-4">
                                 <img src={product.image} alt={product.name} className="w-full h-auto aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -156,7 +155,7 @@ const NewsSection: React.FC = () => {
             <div className="container mx-auto px-4">
                 <h2 className="font-serif text-4xl font-bold text-center mb-10 tracking-tighter">{t.home.newsTitle}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {newsArticles.map((article) => (
+                    {t.newsArticles.map((article) => (
                         <div key={article.id} className="group">
                             <a href="#" className="block overflow-hidden rounded-lg shadow-lg">
                                 <img src={article.image} alt={article.title} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />

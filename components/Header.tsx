@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { navLinks } from '../constants';
 import type { NavLink } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -58,7 +57,7 @@ const Header: React.FC = () => {
                 </div>
 
                 <nav className="hidden lg:flex flex-grow justify-center items-center space-x-8 text-md font-semibold tracking-wide">
-                    {navLinks.map((link) => (
+                    {t.navLinks.map((link) => (
                         <div key={link.id} className="group relative">
                             <a href={link.href} className="text-[#3A3A3A] hover:text-[#E4002B] transition-colors duration-300 pb-4">
                                 {link.title} {link.submenu && <ChevronDownIcon />}
@@ -120,7 +119,7 @@ const Header: React.FC = () => {
                           {language === 'fr' ? 'ES' : 'FR'}
                       </button>
                   </div>
-                  {navLinks.map((link) => (
+                  {t.navLinks.map((link) => (
                       <div key={link.id}>
                           <a href={link.href} className="block py-2 font-semibold text-[#3A3A3A] hover:text-[#E4002B]">
                               {link.title}
