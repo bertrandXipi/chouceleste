@@ -88,8 +88,11 @@ const Header: React.FC = () => {
 
                 <div className="flex items-center space-x-4 text-[#3A3A3A]">
                     <button
-                        onClick={() => setLanguage(language === 'fr' ? 'es' : 'fr')}
-                        className="px-3 py-1 rounded-md border-2 border-[#3A3A3A] hover:bg-[#E4002B] hover:text-white hover:border-[#E4002B] transition-colors duration-300 font-semibold text-sm"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setLanguage(language === 'fr' ? 'es' : 'fr');
+                        }}
+                        className="hidden lg:block px-3 py-1 rounded-md border-2 border-[#3A3A3A] hover:bg-[#E4002B] hover:text-white hover:border-[#E4002B] transition-colors duration-300 font-semibold text-sm"
                     >
                         {language === 'fr' ? 'ES' : 'FR'}
                     </button>
@@ -104,8 +107,19 @@ const Header: React.FC = () => {
       </div>
        {/* Mobile Menu */}
       {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full w-full bg-white shadow-lg">
+          <div className="lg:hidden absolute top-full w-full bg-white shadow-lg z-50">
               <nav className="flex flex-col p-4 space-y-2">
+                  <div className="pb-4 border-b border-gray-200 flex items-center justify-between">
+                      <button
+                          onClick={(e) => {
+                              e.stopPropagation();
+                              setLanguage(language === 'fr' ? 'es' : 'fr');
+                          }}
+                          className="px-4 py-2 rounded-md border-2 border-[#3A3A3A] hover:bg-[#E4002B] hover:text-white hover:border-[#E4002B] transition-colors duration-300 font-semibold text-sm"
+                      >
+                          {language === 'fr' ? 'ES' : 'FR'}
+                      </button>
+                  </div>
                   {navLinks.map((link) => (
                       <div key={link.id}>
                           <a href={link.href} className="block py-2 font-semibold text-[#3A3A3A] hover:text-[#E4002B]">
